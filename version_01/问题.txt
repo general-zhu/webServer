@@ -1,0 +1,57 @@
+管理线程有问题
+
+头文件中
+struct MyEvents;
+不可以
+extern struct MyEvents;//这是报warning，"struct declared inside parameter list"
+
+1、adjustThread：管理线程中创建的新进程好像没有进行分离
+2、threadPoolFree：线程销毁的时候感觉有问题，当线程正在工作呢？
+3、acceptConn：cfd的回调函数还没有设置
+4、acceptConn：//将cfd添加到红黑树epfd中，监听读事件，事件是并不是应该设置为读写事件
+5、eventAdd：struct epoll_event epv = { 0, {0} };这是局部变量吗，为啥会直接上树
+6、acceptConn：i应该从1开始吧
+
+4、acceptConn：//将cfd添加到红黑树epfd中，监听读事件，事件是并不是应该设置为读写事件
+
+5、关于对‘pthread_create’未定义的引用解决方法
+gcc -o main main.c pub.c wrap.c -lpthread
+gcc -o main main.c pub.c wrap.c epoll.c threadpool.c -lpthread
+
+
+警告1：'struct MyEvents' declared inside parameter list
+这是因为有个参数（结构体）的定义是在后面，你先用了，所以编译器不知道这是啥。
+
+6、函数推导
+int (*call_back)(struct ThreadPool* pool, int(*function)(void * arg, struct MyEvents* ev), void* arg, int fd);
+
+int acceptConn(struct ThreadPool * pool, int(*function)(void *arg, struct MyEvents* ev), void* arg, int fd)
+ev->call_back(NULL,NULL,NULL,ev->fd)
+
+int threadpoolAdd(ThreadPool* pool, int (*function)(void* arg, struct MyEvents* ev), void* arg, int fd)
+ev->call_back(thp, httpRequest,&args, 0)
+
+修改后
+int (*call_back)(struct ThreadPool* pool, int(*function)(void * arg, struct MyEvents* ev), void* arg, struct MyEvents* ev, int fd)
+
+
+
+20211025
+就只能得到一个连接，我估计是阻塞在某个地方了
+
+我怀疑是httprequest cfd你设置的是非阻塞，导致cfd关闭了
+
+20211026
+lfd：我设置成非阻塞模式
+fd = 3监听文件描述符成功
+
+
+测试：
+int acceptConn 没有问题
+
+1、先把超时的去掉
+2、eventSet：
+ev->status = 0;
+我感觉因该修改为：ev->status = 1;//1表示在树上呀
+
+结果：ev->status = 0;//应该为0，0是EPOLL_CTL_ADD
