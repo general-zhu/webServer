@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/CurrentThread.h
+muduo/base/Types.h
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/muduo/base/Types.h
+
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/Exception.h
+muduo/base/Types.h
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/muduo/base/Types.h
+exception
+-
+
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/Types.h
+stdint.h
+-
+string.h
+-
+string
+-
+assert.h
+-
+
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/tests/Exception_test.cc
+muduo/base/CurrentThread.h
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/tests/muduo/base/CurrentThread.h
+muduo/base/Exception.h
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/tests/muduo/base/Exception.h
+functional
+-
+vector
+-
+stdio.h
+-
+

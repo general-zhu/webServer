@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/Atomic.h
+muduo/base/noncopyable.h
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/muduo/base/noncopyable.h
+stdint.h
+-
+
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/noncopyable.h
+
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/tests/Atomic_unittest.cc
+muduo/base/Atomic.h
+/home/c404/data1/zhuchun/wprkerspace/job_project/webServer/version_muduo/muduo/muduo/base/tests/muduo/base/Atomic.h
+assert.h
+-
+
