@@ -1,0 +1,48 @@
+{
+    "direct_targets": [], 
+    "start_time": 1656054407.526396, 
+    "exit_code": 0, 
+    "build_targets": [
+        "#:pthread", 
+        "http_server:http_server", 
+        "http_server:http_response", 
+        "thirdparty/muduo-cpp11/net:muduo_test", 
+        "thirdparty/muduo-cpp11/net:muduo_net", 
+        "thirdparty/muduo:muduo_base", 
+        "thirdparty/muduo-cpp11/base:muduo_base", 
+        "http_server:http_context", 
+        "thirdparty/muduo-cpp11/base:muduo_test", 
+        "http_server:http_request", 
+        "http_server:muduo_test", 
+        "thirdparty/muduo:muduo_net"
+    ], 
+    "command_targets": [
+        "#:pthread", 
+        "http_server:http_server", 
+        "http_server:http_response", 
+        "thirdparty/muduo-cpp11/net:muduo_test", 
+        "thirdparty/muduo-cpp11/net:muduo_net", 
+        "thirdparty/muduo:muduo_base", 
+        "thirdparty/muduo-cpp11/base:muduo_base", 
+        "http_server:http_context", 
+        "thirdparty/muduo-cpp11/base:muduo_test", 
+        "http_server:http_request", 
+        "http_server:muduo_test", 
+        "thirdparty/muduo:muduo_net"
+    ], 
+    "end_time": 1656054407.548778, 
+    "loaded_targets": [
+        "#:pthread", 
+        "http_server:http_server", 
+        "http_server:http_response", 
+        "thirdparty/muduo-cpp11/net:muduo_test", 
+        "thirdparty/muduo-cpp11/net:muduo_net", 
+        "thirdparty/muduo:muduo_base", 
+        "thirdparty/muduo-cpp11/base:muduo_base", 
+        "http_server:http_context", 
+        "thirdparty/muduo-cpp11/base:muduo_test", 
+        "http_server:http_request", 
+        "http_server:muduo_test", 
+        "thirdparty/muduo:muduo_net"
+    ]
+}

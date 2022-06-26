@@ -1,0 +1,149 @@
+#Fingerprint=f9dea497e150aa5f57f94f437f24ce36
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Acceptor.cc.o: cxx thirdparty/muduo-cpp11/net/Acceptor.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Buffer.cc.o: cxx thirdparty/muduo-cpp11/net/Buffer.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Channel.cc.o: cxx thirdparty/muduo-cpp11/net/Channel.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Connector.cc.o: cxx thirdparty/muduo-cpp11/net/Connector.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoop.cc.o: cxx thirdparty/muduo-cpp11/net/EventLoop.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoopThread.cc.o: cxx thirdparty/muduo-cpp11/net/EventLoopThread.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoopThreadPool.cc.o: cxx thirdparty/muduo-cpp11/net/EventLoopThreadPool.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/InetAddress.cc.o: cxx thirdparty/muduo-cpp11/net/InetAddress.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Poller.cc.o: cxx thirdparty/muduo-cpp11/net/Poller.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Socket.cc.o: cxx thirdparty/muduo-cpp11/net/Socket.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/SocketsOps.cc.o: cxx thirdparty/muduo-cpp11/net/SocketsOps.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpClient.cc.o: cxx thirdparty/muduo-cpp11/net/TcpClient.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpConnection.cc.o: cxx thirdparty/muduo-cpp11/net/TcpConnection.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpServer.cc.o: cxx thirdparty/muduo-cpp11/net/TcpServer.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Timer.cc.o: cxx thirdparty/muduo-cpp11/net/Timer.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TimerQueue.cc.o: cxx thirdparty/muduo-cpp11/net/TimerQueue.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/DefaultPoller.cc.o: cxx thirdparty/muduo-cpp11/net/poller/DefaultPoller.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/EPollPoller.cc.o: cxx thirdparty/muduo-cpp11/net/poller/EPollPoller.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/PollPoller.cc.o: cxx thirdparty/muduo-cpp11/net/poller/PollPoller.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpServer.cc.o: cxx thirdparty/muduo-cpp11/net/http/HttpServer.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpResponse.cc.o: cxx thirdparty/muduo-cpp11/net/http/HttpResponse.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpContext.cc.o: cxx thirdparty/muduo-cpp11/net/http/HttpContext.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Endian.h.H: cxxhdrs thirdparty/muduo-cpp11/net/Endian.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TimerId.h.H: cxxhdrs thirdparty/muduo-cpp11/net/TimerId.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/ZlibStream.h.H: cxxhdrs thirdparty/muduo-cpp11/net/ZlibStream.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Callbacks.h.H: cxxhdrs thirdparty/muduo-cpp11/net/Callbacks.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Acceptor.h.H: cxxhdrs thirdparty/muduo-cpp11/net/Acceptor.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Buffer.h.H: cxxhdrs thirdparty/muduo-cpp11/net/Buffer.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Channel.h.H: cxxhdrs thirdparty/muduo-cpp11/net/Channel.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Connector.h.H: cxxhdrs thirdparty/muduo-cpp11/net/Connector.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoop.h.H: cxxhdrs thirdparty/muduo-cpp11/net/EventLoop.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoopThread.h.H: cxxhdrs thirdparty/muduo-cpp11/net/EventLoopThread.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoopThreadPool.h.H: cxxhdrs thirdparty/muduo-cpp11/net/EventLoopThreadPool.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/InetAddress.h.H: cxxhdrs thirdparty/muduo-cpp11/net/InetAddress.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Poller.h.H: cxxhdrs thirdparty/muduo-cpp11/net/Poller.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Socket.h.H: cxxhdrs thirdparty/muduo-cpp11/net/Socket.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/SocketsOps.h.H: cxxhdrs thirdparty/muduo-cpp11/net/SocketsOps.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpClient.h.H: cxxhdrs thirdparty/muduo-cpp11/net/TcpClient.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpConnection.h.H: cxxhdrs thirdparty/muduo-cpp11/net/TcpConnection.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpServer.h.H: cxxhdrs thirdparty/muduo-cpp11/net/TcpServer.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Timer.h.H: cxxhdrs thirdparty/muduo-cpp11/net/Timer.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TimerQueue.h.H: cxxhdrs thirdparty/muduo-cpp11/net/TimerQueue.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/EPollPoller.h.H: cxxhdrs thirdparty/muduo-cpp11/net/poller/EPollPoller.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/PollPoller.h.H: cxxhdrs thirdparty/muduo-cpp11/net/poller/PollPoller.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpServer.h.H: cxxhdrs thirdparty/muduo-cpp11/net/http/HttpServer.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpResponse.h.H: cxxhdrs thirdparty/muduo-cpp11/net/http/HttpResponse.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpContext.h.H: cxxhdrs thirdparty/muduo-cpp11/net/http/HttpContext.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.incchk.result: ccincchk build64_release/thirdparty/muduo-cpp11/net/muduo_net.incchk | build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Acceptor.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Buffer.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Channel.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Connector.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoop.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoopThread.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoopThreadPool.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/InetAddress.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Poller.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Socket.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/SocketsOps.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpClient.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpConnection.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpServer.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Timer.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TimerQueue.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/DefaultPoller.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/EPollPoller.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/PollPoller.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpServer.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpResponse.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpContext.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Endian.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TimerId.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/ZlibStream.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Callbacks.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Acceptor.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Buffer.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Channel.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Connector.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoop.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoopThread.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoopThreadPool.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/InetAddress.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Poller.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Socket.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/SocketsOps.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpClient.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpConnection.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpServer.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Timer.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TimerQueue.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/EPollPoller.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/PollPoller.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpServer.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpResponse.h.H build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpContext.h.H
+
+build build64_release/thirdparty/muduo-cpp11/net/libmuduo_net.a: ar build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Acceptor.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Buffer.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Channel.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Connector.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoop.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoopThread.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/EventLoopThreadPool.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/InetAddress.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Poller.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Socket.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/SocketsOps.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpClient.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpConnection.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TcpServer.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/Timer.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/TimerQueue.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/DefaultPoller.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/EPollPoller.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/poller/PollPoller.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpServer.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpResponse.cc.o build64_release/thirdparty/muduo-cpp11/net/muduo_net.objs/http/HttpContext.cc.o || build64_release/thirdparty/muduo-cpp11/net/muduo_net.incchk.result
+
+build build64_release/thirdparty/muduo-cpp11/net/muduo_net.__outputs__: phony build64_release/thirdparty/muduo-cpp11/net/libmuduo_net.a build64_release/thirdparty/muduo-cpp11/net/muduo_net.incchk.result
+

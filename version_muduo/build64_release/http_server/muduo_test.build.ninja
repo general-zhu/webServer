@@ -1,0 +1,12 @@
+#Fingerprint=cd96230f15be70b99b3f46cf8abbabe7
+
+build build64_release/http_server/muduo_test.objs/muduo_test.cc.o: cxx http_server/muduo_test.cc
+
+build build64_release/http_server/muduo_test.incchk.result: ccincchk build64_release/http_server/muduo_test.incchk | build64_release/http_server/muduo_test.objs/muduo_test.cc.o
+
+build build64_release/http_server/muduo_test: link build64_release/http_server/muduo_test.objs/muduo_test.cc.o build64_release/scm.cc.o build64_release/thirdparty/muduo-cpp11/base/libmuduo_base.a || build64_release/thirdparty/muduo/muduo_base.incchk.result build64_release/http_server/muduo_test.incchk.result build64_release/scm.cc.o
+  extra_linkflags = -lpthread
+  target_linkflags = -static-libgcc -static-libstdc++
+
+build build64_release/http_server/muduo_test.__outputs__: phony build64_release/http_server/muduo_test build64_release/http_server/muduo_test.incchk.result
+

@@ -1,0 +1,12 @@
+#Fingerprint=2e6e9d8e056f4ed03322362f82c95057
+
+build build64_release/muduo-cpp11/base/tests/AsyncLogging_test.objs/AsyncLogging_test.cc.o: cxx muduo-cpp11/base/tests/AsyncLogging_test.cc
+
+build build64_release/muduo-cpp11/base/tests/AsyncLogging_test.incchk.result: ccincchk build64_release/muduo-cpp11/base/tests/AsyncLogging_test.incchk | build64_release/muduo-cpp11/base/tests/AsyncLogging_test.objs/AsyncLogging_test.cc.o
+
+build build64_release/muduo-cpp11/base/tests/AsyncLogging_test: link build64_release/muduo-cpp11/base/tests/AsyncLogging_test.objs/AsyncLogging_test.cc.o build64_release/scm.cc.o build64_release/thirdparty/muduo-cpp11/base/libmuduo_base.a || build64_release/muduo-cpp11/base/tests/AsyncLogging_test.incchk.result build64_release/scm.cc.o
+  extra_linkflags = -lpthread
+  target_linkflags = -static-libgcc -static-libstdc++
+
+build build64_release/muduo-cpp11/base/tests/AsyncLogging_test.__outputs__: phony build64_release/muduo-cpp11/base/tests/AsyncLogging_test build64_release/muduo-cpp11/base/tests/AsyncLogging_test.incchk.result
+

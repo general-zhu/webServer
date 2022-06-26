@@ -1,0 +1,7 @@
+cc_config(
+    cxxflags='-std=gnu++11',
+)
+
+global_config(
+    default_visibility = ['PUBLIC'],
+)
