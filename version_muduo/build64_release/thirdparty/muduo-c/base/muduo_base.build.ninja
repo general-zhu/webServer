@@ -1,0 +1,137 @@
+#Fingerprint=b38f33c21e1b610f1d33cd6457d063a3
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/AsyncLogging.cc.o: cxx thirdparty/muduo-c/base/AsyncLogging.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Condition.cc.o: cxx thirdparty/muduo-c/base/Condition.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/CountDownLatch.cc.o: cxx thirdparty/muduo-c/base/CountDownLatch.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/CurrentThread.cc.o: cxx thirdparty/muduo-c/base/CurrentThread.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Date.cc.o: cxx thirdparty/muduo-c/base/Date.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Exception.cc.o: cxx thirdparty/muduo-c/base/Exception.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/FileUtil.cc.o: cxx thirdparty/muduo-c/base/FileUtil.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/LogFile.cc.o: cxx thirdparty/muduo-c/base/LogFile.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/LogStream.cc.o: cxx thirdparty/muduo-c/base/LogStream.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Logging.cc.o: cxx thirdparty/muduo-c/base/Logging.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/ProcessInfo.cc.o: cxx thirdparty/muduo-c/base/ProcessInfo.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Thread.cc.o: cxx thirdparty/muduo-c/base/Thread.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/ThreadPool.cc.o: cxx thirdparty/muduo-c/base/ThreadPool.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/TimeZone.cc.o: cxx thirdparty/muduo-c/base/TimeZone.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Timestamp.cc.o: cxx thirdparty/muduo-c/base/Timestamp.cc
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/AsyncLogging.h.H: cxxhdrs thirdparty/muduo-c/base/AsyncLogging.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Atomic.h.H: cxxhdrs thirdparty/muduo-c/base/Atomic.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/BlockingQueue.h.H: cxxhdrs thirdparty/muduo-c/base/BlockingQueue.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/BoundedBlockingQueue.h.H: cxxhdrs thirdparty/muduo-c/base/BoundedBlockingQueue.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Condition.h.H: cxxhdrs thirdparty/muduo-c/base/Condition.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/CountDownLatch.h.H: cxxhdrs thirdparty/muduo-c/base/CountDownLatch.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/CurrentThread.h.H: cxxhdrs thirdparty/muduo-c/base/CurrentThread.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Date.h.H: cxxhdrs thirdparty/muduo-c/base/Date.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Exception.h.H: cxxhdrs thirdparty/muduo-c/base/Exception.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/FileUtil.h.H: cxxhdrs thirdparty/muduo-c/base/FileUtil.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/GzipFile.h.H: cxxhdrs thirdparty/muduo-c/base/GzipFile.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/LogFile.h.H: cxxhdrs thirdparty/muduo-c/base/LogFile.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/LogStream.h.H: cxxhdrs thirdparty/muduo-c/base/LogStream.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Logging.h.H: cxxhdrs thirdparty/muduo-c/base/Logging.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Mutex.h.H: cxxhdrs thirdparty/muduo-c/base/Mutex.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/ProcessInfo.h.H: cxxhdrs thirdparty/muduo-c/base/ProcessInfo.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Singleton.h.H: cxxhdrs thirdparty/muduo-c/base/Singleton.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/StringPiece.h.H: cxxhdrs thirdparty/muduo-c/base/StringPiece.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Thread.h.H: cxxhdrs thirdparty/muduo-c/base/Thread.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/ThreadLocal.h.H: cxxhdrs thirdparty/muduo-c/base/ThreadLocal.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/ThreadLocalSingleton.h.H: cxxhdrs thirdparty/muduo-c/base/ThreadLocalSingleton.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/ThreadPool.h.H: cxxhdrs thirdparty/muduo-c/base/ThreadPool.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/TimeZone.h.H: cxxhdrs thirdparty/muduo-c/base/TimeZone.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Timestamp.h.H: cxxhdrs thirdparty/muduo-c/base/Timestamp.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/Types.h.H: cxxhdrs thirdparty/muduo-c/base/Types.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/WeakCallback.h.H: cxxhdrs thirdparty/muduo-c/base/WeakCallback.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/copyable.h.H: cxxhdrs thirdparty/muduo-c/base/copyable.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.objs/noncopyable.h.H: cxxhdrs thirdparty/muduo-c/base/noncopyable.h
+  cppflags = -Wno-format-nonliteral -Wno-vla
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.incchk.result: ccincchk build64_release/thirdparty/muduo-c/base/muduo_base.incchk | build64_release/thirdparty/muduo-c/base/muduo_base.objs/AsyncLogging.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Condition.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/CountDownLatch.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/CurrentThread.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Date.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Exception.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/FileUtil.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/LogFile.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/LogStream.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Logging.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/ProcessInfo.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Thread.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/ThreadPool.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/TimeZone.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Timestamp.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/AsyncLogging.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/Atomic.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/BlockingQueue.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/BoundedBlockingQueue.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/Condition.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/CountDownLatch.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/CurrentThread.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/Date.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/Exception.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/FileUtil.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/GzipFile.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/LogFile.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/LogStream.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/Logging.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/Mutex.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/ProcessInfo.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/Singleton.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/StringPiece.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/Thread.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/ThreadLocal.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/ThreadLocalSingleton.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/ThreadPool.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/TimeZone.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/Timestamp.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/Types.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/WeakCallback.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/copyable.h.H build64_release/thirdparty/muduo-c/base/muduo_base.objs/noncopyable.h.H
+
+build build64_release/thirdparty/muduo-c/base/libmuduo_base.a: ar build64_release/thirdparty/muduo-c/base/muduo_base.objs/AsyncLogging.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Condition.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/CountDownLatch.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/CurrentThread.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Date.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Exception.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/FileUtil.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/LogFile.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/LogStream.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Logging.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/ProcessInfo.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Thread.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/ThreadPool.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/TimeZone.cc.o build64_release/thirdparty/muduo-c/base/muduo_base.objs/Timestamp.cc.o || build64_release/thirdparty/muduo-c/base/muduo_base.incchk.result
+
+build build64_release/thirdparty/muduo-c/base/muduo_base.__outputs__: phony build64_release/thirdparty/muduo-c/base/libmuduo_base.a build64_release/thirdparty/muduo-c/base/muduo_base.incchk.result
+

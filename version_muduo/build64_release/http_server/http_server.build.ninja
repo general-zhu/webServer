@@ -1,0 +1,12 @@
+#Fingerprint=33b167de129d36f005af843adeabaa7f
+
+build build64_release/http_server/http_server.objs/http_server.cc.o: cxx http_server/http_server.cc
+
+build build64_release/http_server/http_server.objs/http_server.h.H: cxxhdrs http_server/http_server.h
+
+build build64_release/http_server/http_server.incchk.result: ccincchk build64_release/http_server/http_server.incchk | build64_release/http_server/http_server.objs/http_server.cc.o build64_release/http_server/http_server.objs/http_server.h.H
+
+build build64_release/http_server/libhttp_server.a: ar build64_release/http_server/http_server.objs/http_server.cc.o || build64_release/http_server/http_server.incchk.result
+
+build build64_release/http_server/http_server.__outputs__: phony build64_release/http_server/http_server.incchk.result build64_release/http_server/libhttp_server.a
+
