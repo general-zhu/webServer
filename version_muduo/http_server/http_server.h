@@ -11,8 +11,8 @@
 #include "thirdparty/muduo/net/TcpServer.h"
 
 namespace http {
- class HttpRequest;
- class HttpResponse;
+class HttpRequest;
+class HttpResponse;
 
 class HttpServer {
  public:
@@ -22,10 +22,8 @@ class HttpServer {
   HttpServer(muduo::net::EventLoop* loop, const muduo::net::InetAddress& listen_addr,
       const std::string& name, muduo::net::TcpServer::Option option =
       muduo::net::TcpServer::kNoReusePort);
-  void setHttpCallback(const HttpCallback& cb) {
-    http_callback_ = cb;
-  }
-  void start();
+  void SetHttpCallback(const HttpCallback& cb) { http_callback_ = cb; }
+  void Start();
 
  private:
   void OnConnection(const muduo::net::TcpConnectionPtr& conn);

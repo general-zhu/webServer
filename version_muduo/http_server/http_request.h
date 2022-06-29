@@ -8,6 +8,7 @@
 #define HTTP_REQUEST_H_
 #pragma once
 
+#include <iostream>
 #include <map>
 #include <string>
 #include "thirdparty/muduo/base/Timestamp.h"
@@ -29,13 +30,18 @@ class HttpRequest {
     kHttp10,
     kHttp11,
   };
-  HttpRequest() : method_(kInvalid), version_(kUnknown) {}
+  HttpRequest() : method_(kInvalid), version_(kUnknown) { path_.clear(); }
   void SetVersion(Version v) { version_ = v; }
   Version GetVersion() const { return version_; }
   bool SetMethod(const char* start, const char* end);
   Method GetMethod() const { return method_; }
   const char* MethodString() const;
-  void SetPath(const char* start, const char* end) { path_.assign(start, end); }
+  void SetPath(const char* start, const char* end) {
+    std::cerr << "path_=" << std::string(start, end) << "\n";
+    // path_ = std::string(start, end);
+    // path_.assign(start, end);
+    path_ = "/1";
+  }
   const std::string& GetPath() const { return path_; }
   void SetQuery(const char* start, const char* end) { query_.assign(start, end); }
   const std::string& GetQuery() const { return query_; }
@@ -55,6 +61,6 @@ class HttpRequest {
   muduo::Timestamp receive_time_;
   std::map<std::string, std::string> headers_;
 };
-}
+}  // namespace http
 
 #endif  // HTTP_REQUEST_H_

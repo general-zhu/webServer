@@ -63,3 +63,37 @@ cc_binary(
     ],
 )
 
+cc_binary(
+    name = 'test_http_server',
+    srcs = 'test_http_server.cc',
+    deps = [
+        ':http_server',
+        '//thirdparty/muduo:muduo_net',
+    ],
+)
+
+cc_library(
+    name = 'inspector',
+    srcs = [
+        'inspector.cc',
+        'process_inspector.cc',
+    ],
+    hdrs = [
+        'inspector.h',
+        'process_inspector',
+    ],
+    deps = [
+        ':http_server',
+        ':http_request',
+        '//thirdparty/muduo:muduo_base',
+    ],
+)
+
+cc_binary(
+    name = 'main',
+    srcs = 'main.cc',
+    deps = [
+        ':inspector',
+        '//thirdparty/muduo:muduo_net',
+    ]
+)

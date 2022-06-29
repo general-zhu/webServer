@@ -9,6 +9,7 @@
 #include <string>
 #include "thirdparty/muduo/base/Timestamp.h"
 #include "thirdparty/muduo/net/Buffer.h"
+#include "thirdparty/muduo/base/Logging.h"
 
 namespace http {
 bool HttpContext::ProcessRequestLine(const char* begin, const char* end) {
@@ -17,13 +18,15 @@ bool HttpContext::ProcessRequestLine(const char* begin, const char* end) {
   const char* space = std::find(start, end, ' ');
   if (space != end && request_.SetMethod(start, space)) {
     start = space + 1;
-    space = std::find (start, end, ' ');
+    space = std::find(start, end, ' ');
     if (space != end) {
       const char* question = std::find(start, space, '?');
       if (question != space) {
         request_.SetPath(start, question);
         request_.SetQuery(question, space);
       } else {
+        std::string path;
+        LOG_INFO << "ProcessRequestLine path=" << path.assign(start,space);
         request_.SetPath(start, space);
       }
       start = space + 1;
@@ -49,6 +52,7 @@ bool HttpContext::ParseRequest(muduo::net::Buffer* buf, muduo::Timestamp receive
     if (state_ == kExpectRequestLine) {
       const char* crlf = buf->findCRLF();
       if (crlf) {
+        // LOG_INFO << "处理请求行" << std::string(buf->peek(), crlf);
         ok = ProcessRequestLine(buf->peek(), crlf);
         if (ok) {
           request_.SetReceiveTime(receive_time);

@@ -12,7 +12,7 @@
 
 namespace http {
 namespace detail {
-void DefaultHttpCallback(const http::HttpRequest&, http::HttpResponse* resp) {
+void DefaultHttpCallback(const HttpRequest&, HttpResponse* resp) {
   resp->SetStatusCode(http::HttpResponse::k404NotFound);
   resp->SetStatusMessage("Not Found");
   resp->SetCloseConnection(true);
@@ -28,33 +28,44 @@ HttpServer::HttpServer(muduo::net::EventLoop* loop, const muduo::net::InetAddres
   std::placeholders::_2, std::placeholders::_3));
 }
 
-void HttpServer::start() {
+void HttpServer::Start() {
   LOG_WARN << "httpServer:" << server_.name() << " starts listening on " << server_.ipPort();
   server_.start();
 }
 
 void HttpServer::OnConnection (const muduo::net::TcpConnectionPtr& conn) {
   if (conn->connected()) {
-    conn->setContext(HttpContext());
+   // 底层TcpServer有了
+   // LOG_WARN << "OnConnection conn=" << conn->peerAddress().toIpPort() << "->"
+   //     << conn->localAddress().toIpPort() << "is_conncted";
+    // conn->setContext(HttpContext());
+    conn->setTcpNoDelay(true);
   }
 }
 
 void HttpServer::OnMessage(const muduo::net::TcpConnectionPtr& conn, muduo::net::Buffer* buf,
     muduo::Timestamp receive_time) {
-  // http::HttpContext* context = boost::any_cast<http::HttpContext>(conn->getMutableContext());
+  // HttpContext* context = boost::any_cast<HttpContext>(conn->getMutableContext());
   http::HttpContext* context =
   reinterpret_cast<http::HttpContext*>(conn->getMutableContext());
+  //  const char* crlf = buf->findCRLF();
+  // if (crlf) {
+  //    LOG_INFO << "处理请求行=" << std::string(buf->peek(), crlf);
+  // }
   if (!context->ParseRequest(buf, receive_time)) {
+    LOG_INFO << "Bad Request";
     conn->send("HTTP/1.1 400 Bad Request\r\n\r\n");
     conn->shutdown();
   }
   if (context->GotAll()) {
     OnRequest(conn, context->GetRequest());
     context->Reset();
+  } else {
+    LOG_INFO << "OnMessage buf process error.";
   }
 }
 
-void HttpServer::OnRequest(const muduo::net::TcpConnectionPtr& conn, const http::HttpRequest& req) {
+void HttpServer::OnRequest(const muduo::net::TcpConnectionPtr& conn, const HttpRequest& req) {
   const std::string& connection = req.GetHeader("Connection");
   bool close = connection == "close" || (req.GetVersion() == HttpRequest::kHttp10 &&
       connection != "keep-Alive");
@@ -63,6 +74,7 @@ void HttpServer::OnRequest(const muduo::net::TcpConnectionPtr& conn, const http:
   muduo::net::Buffer buf;
   response.AppendToBuffer(&buf);
   conn->send(&buf);
+  LOG_DEBUG << "conn sended";
   if (response.IsCloseConnection()) {
     conn->shutdown();
   }
