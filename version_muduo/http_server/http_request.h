@@ -30,18 +30,13 @@ class HttpRequest {
     kHttp10,
     kHttp11,
   };
-  HttpRequest() : method_(kInvalid), version_(kUnknown) { path_.clear(); }
+  HttpRequest() : method_(kInvalid), version_(kUnknown) {}
   void SetVersion(Version v) { version_ = v; }
   Version GetVersion() const { return version_; }
   bool SetMethod(const char* start, const char* end);
   Method GetMethod() const { return method_; }
   const char* MethodString() const;
-  void SetPath(const char* start, const char* end) {
-    std::cerr << "path_=" << std::string(start, end) << "\n";
-    // path_ = std::string(start, end);
-    // path_.assign(start, end);
-    path_ = "/1";
-  }
+  void SetPath(const char* start, const char* end) { path_.assign(start, end); }
   const std::string& GetPath() const { return path_; }
   void SetQuery(const char* start, const char* end) { query_.assign(start, end); }
   const std::string& GetQuery() const { return query_; }
@@ -51,7 +46,6 @@ class HttpRequest {
   std::string GetHeader(const std::string& filed) const;
   const std::map<std::string, std::string>& GetHeaders() const { return headers_; }
   void swap(HttpRequest& that);
-
 
  private:
   Method method_;

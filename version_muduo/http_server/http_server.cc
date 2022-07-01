@@ -46,12 +46,9 @@ void HttpServer::OnConnection (const muduo::net::TcpConnectionPtr& conn) {
 void HttpServer::OnMessage(const muduo::net::TcpConnectionPtr& conn, muduo::net::Buffer* buf,
     muduo::Timestamp receive_time) {
   // HttpContext* context = boost::any_cast<HttpContext>(conn->getMutableContext());
-  http::HttpContext* context =
-  reinterpret_cast<http::HttpContext*>(conn->getMutableContext());
-  //  const char* crlf = buf->findCRLF();
-  // if (crlf) {
-  //    LOG_INFO << "处理请求行=" << std::string(buf->peek(), crlf);
-  // }
+  //http::HttpContext* context =
+  //reinterpret_cast<http::HttpContext*>(conn->getMutableContext());
+  HttpContext* context = new HttpContext;
   if (!context->ParseRequest(buf, receive_time)) {
     LOG_INFO << "Bad Request";
     conn->send("HTTP/1.1 400 Bad Request\r\n\r\n");

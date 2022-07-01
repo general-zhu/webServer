@@ -97,3 +97,9 @@ cc_binary(
         '//thirdparty/muduo:muduo_net',
     ]
 )
+
+cc_binary(
+    name = 'request_test',
+    srcs = 'request_test.cc',
+    deps = ':http_request',
+)
