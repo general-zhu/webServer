@@ -68,6 +68,8 @@ cc_binary(
     srcs = 'test_http_server.cc',
     deps = [
         ':http_server',
+        ':http_request',
+        ':http_response',
         '//thirdparty/muduo:muduo_net',
     ],
 )
@@ -80,12 +82,14 @@ cc_library(
     ],
     hdrs = [
         'inspector.h',
-        'process_inspector',
+        'process_inspector.h',
     ],
     deps = [
         ':http_server',
+        ':http_response',
         ':http_request',
         '//thirdparty/muduo:muduo_base',
+        '//thirdparty/muduo:muduo_net',
     ],
 )
 
