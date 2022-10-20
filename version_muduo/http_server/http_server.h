@@ -24,6 +24,7 @@ class HttpServer {
       muduo::net::TcpServer::kNoReusePort);
   void SetHttpCallback(const HttpCallback& cb) { http_callback_ = cb; }
   void Start();
+  void SetServerThreads(int server_threads) { server_.setThreadNum(server_threads); }
 
  private:
   void OnConnection(const muduo::net::TcpConnectionPtr& conn);

@@ -1,5 +1,7 @@
 cc_config(
-    cxxflags='-std=gnu++11',
+    #cxxflags=['-std=gnu++11', '-g'],
+    #cxxflags=['-std=gnu++11'],
+    cxxflags=['-g'],
 )
 
 global_config(

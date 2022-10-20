@@ -38,6 +38,7 @@ Inspector::Inspector(muduo::net::EventLoop* loop, const muduo::net::InetAddress&
     process_inspector_(new ProcessInspector) {
   server_.SetHttpCallback(std::bind(&Inspector::OnRequest, this, std::placeholders::_1,
       std::placeholders::_2));
+  server_.SetServerThreads(3);
   process_inspector_->RegisterCommands(this);
   loop->runAfter(0, std::bind(&Inspector::Start, this));
 }

@@ -49,6 +49,7 @@ void HttpServer::OnMessage(const muduo::net::TcpConnectionPtr& conn, muduo::net:
   //http::HttpContext* context =
   //reinterpret_cast<http::HttpContext*>(conn->getMutableContext());
   HttpContext* context = new HttpContext;
+  // 从buf里提取请求
   if (!context->ParseRequest(buf, receive_time)) {
     LOG_INFO << "Bad Request";
     conn->send("HTTP/1.1 400 Bad Request\r\n\r\n");
@@ -56,7 +57,7 @@ void HttpServer::OnMessage(const muduo::net::TcpConnectionPtr& conn, muduo::net:
   }
   if (context->GotAll()) {
     OnRequest(conn, context->GetRequest());
-    context->Reset();
+    context->Reset(); // 将context中的request 下一次请求做准备
   } else {
     LOG_INFO << "OnMessage buf process error.";
   }
@@ -70,7 +71,7 @@ void HttpServer::OnRequest(const muduo::net::TcpConnectionPtr& conn, const HttpR
   http_callback_(req, &response);
   muduo::net::Buffer buf;
   response.AppendToBuffer(&buf);
-  conn->send(&buf);
+  conn->send(&buf); // 发送给浏览器
   LOG_DEBUG << "conn sended";
   if (response.IsCloseConnection()) {
     conn->shutdown();
