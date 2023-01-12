@@ -3,6 +3,9 @@ build/
 CMakeFiles/
 
 CMakeCache.txt
+log.txt
+root.txt
+system.txt
 Makefile
 lib/
 cmake_install.cmake
