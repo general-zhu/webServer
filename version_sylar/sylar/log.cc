@@ -133,6 +133,15 @@ class FiberIdFormatItem : public LogFormatter::FormatItem {
   }
 };
 
+class ThreadNameFormatItem : public LogFormatter::FormatItem {
+ public:
+  ThreadNameFormatItem(const std::string& str = "") {}
+  void Format(std::ostream& os, Logger::Ptr logger,
+      LogLevel::Level level, LogEvent::Ptr event) override {
+    os << event->GetThreadName();
+  }
+};
+
 class DateTimeFormatItem : public LogFormatter::FormatItem {
  public:
   DateTimeFormatItem(const std::string& format = "%Y-%m-%d %H:%M:%S") : formatter_(format) {
@@ -200,14 +209,16 @@ class TabFormatItem : public LogFormatter::FormatItem {
   }
 };
 
-LogEvent::LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level, const char *file,
-      int32_t line, uint32_t elapse, uint32_t thread_id, uint32_t fiber_id, uint64_t time)
-    : file_(file),
+LogEvent::LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level,
+      const char *file, int32_t line, uint32_t elapse, uint32_t thread_id,
+      uint32_t fiber_id, uint64_t time, const std::string& thread_name) :
+      file_(file),
       line_(line),
       elapse_(elapse),
       thread_id_(thread_id),
       fiber_id_(fiber_id),
       time_(time),
+      thread_name_(thread_name),
       logger_(logger),
       level_(level) {
 
@@ -217,13 +228,15 @@ Logger::Logger(std::string name)
     : name_(name),
       level_(LogLevel::Level::DEBUG) {
   formatter_.reset(new LogFormatter(
-      "%d{%Y-%m-%d %H:%M:%S}%T%t%T[%p]%T[%c]%T%f:%l%T%m%n"));
+      "%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));
   // formatter_.reset(new LogFormatter( "%d [%p] <%f:%l>   %m %n"));
 }
 
 void Logger::SetFormatter(LogFormatter::Ptr val) {
+  MutexType::MutexLock lock(mutex_);
   formatter_ = val;
   for (auto& i : appenders_) {
+    MutexType::MutexLock ll(i->mutex_);
     if (!i->has_formatter_) {
       i->formatter_ = formatter_;
     }
@@ -242,6 +255,7 @@ void Logger::SetFormatter(const std::string& val) {
 }
 
 std::string Logger::ToYamlString() {
+  MutexType::MutexLock lock(mutex_);
   YAML::Node node;
   node["name"] = name_;
   if (level_ != LogLevel::UNKNOW) {
@@ -259,20 +273,24 @@ std::string Logger::ToYamlString() {
 }
 
 LogFormatter::Ptr Logger::GetFormatter() {
+  MutexType::MutexLock lock(mutex_);
   return formatter_;
 }
 
 void Logger::AddAppender(LogAppender::Ptr appender) {
+  MutexType::MutexLock lock(mutex_);
   if (!appender->GetFormatter()) {
     // 如果appender传进来的时候没有设置格式就用logger的格式
     // appender->SetFormatter(formatter_);
     // 用友元类这样就不用修改has_formatter_成员变量了
+    MutexType::MutexLock ll(appender->mutex_);
     appender->formatter_ = formatter_;
   }
   appenders_.push_back(appender);
 }
 
 void Logger::DelAppender(LogAppender::Ptr appender) {
+  MutexType::MutexLock lock(mutex_);
   for (auto it = appenders_.begin(); it != appenders_.end(); ++it) {
     if (*it == appender) {
       appenders_.erase(it);
@@ -282,12 +300,14 @@ void Logger::DelAppender(LogAppender::Ptr appender) {
 }
 
 void Logger::ClearAppenders() {
+  MutexType::MutexLock lock(mutex_);
   appenders_.clear();
 }
 
 void Logger::Log(LogLevel::Level level, LogEvent::Ptr event) {
   if (level >= level_) {
     auto self = shared_from_this();
+    MutexType::MutexLock lock(mutex_);
     if (!appenders_.empty()) {
       for (auto& i : appenders_) {
         i->Log(self, level, event);
@@ -319,12 +339,18 @@ void Logger::Fatal(LogEvent::Ptr event) {
 }
 
 void LogAppender::SetFormatter(LogFormatter::Ptr val) {
+  MutexType::MutexLock lock(mutex_);
   formatter_ = val;
   if (formatter_) {
     has_formatter_ = true;
   } else {
     has_formatter_ = false;
   }
+}
+
+LogFormatter::Ptr LogAppender::GetFormatter() {
+  MutexType::MutexLock lock(mutex_);
+  return formatter_;
 }
 
 FileLogAppender::FileLogAppender(const std::string& filename) : filename_(filename) {
@@ -334,11 +360,18 @@ FileLogAppender::FileLogAppender(const std::string& filename) : filename_(filena
 void FileLogAppender::Log(std::shared_ptr<Logger> logger,
     LogLevel::Level level, LogEvent::Ptr event) {
   if (level >= level_) {
+    uint64_t now = event->GetTime();
+    if (now >= (lasttime_ + 3)) {
+      Reopen();
+      lasttime_ = now;
+    }
+    MutexType::MutexLock lock(mutex_);
     filestream_ << formatter_->Format(logger, level, event);
   }
 }
 
 bool FileLogAppender::Reopen() {
+  MutexType::MutexLock lock(mutex_);
   if (filestream_) {
     filestream_.close();
   }
@@ -347,6 +380,7 @@ bool FileLogAppender::Reopen() {
 }
 
 std::string FileLogAppender::ToYamlString() {
+  MutexType::MutexLock lock(mutex_);
   YAML::Node node;
   node["type"] = "FileLogAppender";
   node["file"] = filename_;
@@ -364,11 +398,13 @@ std::string FileLogAppender::ToYamlString() {
 void StdoutLogAppender::Log(std::shared_ptr<Logger> logger,
     LogLevel::Level level, LogEvent::Ptr event) {
   if (level >= level_) {
+    MutexType::MutexLock lock(mutex_);
     std::cout << formatter_->Format(logger, level, event);
   }
 }
 
 std::string StdoutLogAppender::ToYamlString() {
+  MutexType::MutexLock lock(mutex_);
   YAML::Node node;
   node["type"] = "StdoutLogAppender";
   if (level_ != LogLevel::UNKNOW) {
@@ -475,8 +511,9 @@ void LogFormatter::Init() {
     XX(f, FilenameFormatItem),          // f:文件名
     XX(l, LineFormatItem),              // l:行号
     XX(T, TabFormatItem),               // T:Tab
-  //  XX(F, FiberIdFormatItem),           // F:协程id
-  //  XX(N, ThreadNameFormatItem),        // N:线程名称
+    XX(F, FiberIdFormatItem),           // F:协程id
+    XX(N, ThreadNameFormatItem),        // N:线程名称
+#undef XX
   };
   for (auto& i : vec) {
     if (std::get<2>(i) == 0) {
@@ -501,6 +538,7 @@ LoggerManager::LoggerManager() {
 }
 
 Logger::Ptr LoggerManager::GetLogger(const std::string& name) {
+  MutexType::MutexLock lock(mutex_);
   auto it = loggers_.find(name);
   if (it != loggers_.end()) {
     return it->second;
@@ -701,6 +739,7 @@ class LogIniter {
 static LogIniter __log_init;
 
 std::string LoggerManager::ToYamlString() {
+  MutexType::MutexLock lock(mutex_);
   YAML::Node node;
   for (auto& i : loggers_) {
     node.push_back(YAML::Load(i.second->ToYamlString()));

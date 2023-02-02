@@ -191,5 +191,11 @@ int main() {
   // TestConfig();
   // test_class();
   test_log();
+  sylar::Config::Visit([](sylar::ConfigVarBase::Ptr var) {
+    LOG_INFO(LOG_ROOT()) << "name=" << var->GetName()
+        << " description=" << var->GetDescription()
+        << " typename=" << var->GetTypeName()
+        << " value=" << var->ToString();
+  });
   return 0;
 }

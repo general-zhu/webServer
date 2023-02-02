@@ -13,12 +13,13 @@
 #include <map>
 #include "util.h"
 #include "singleton.h"
+#include "thread.h"
 
 #define SYLAR_LOG_LEVEL(logger, level) \
   if (logger->GetLevel() <= level) \
     sylar::LogEventWrap(sylar::LogEvent::Ptr(new sylar::LogEvent(logger, level, \
         __FILE__, __LINE__, 0, sylar::GetThreadId(), \
-        sylar::GetFiberId(), time(0)))).GetSS()
+        sylar::GetFiberId(), time(0), sylar::Thread::GetThreadName()))).GetSS()
 
 #define LOG_DEBUG(logger) SYLAR_LOG_LEVEL(logger, sylar::LogLevel::DEBUG)
 #define LOG_INFO(logger) SYLAR_LOG_LEVEL(logger, sylar::LogLevel::INFO)
@@ -30,7 +31,7 @@
   if (logger->GetLevel() <= level) \
     sylar::LogEventWrap(sylar::LogEvent::Ptr(new sylar::LogEvent(logger, level, \
         __FILE__, __LINE__, 0, sylar::GetThreadId(), sylar::GetFiberId(), \
-        time(0)))).GetEvent()->Format(fmt, __VA_ARGS__)
+        time(0), sylar::Thread::GetThreadName()))).GetEvent()->Format(fmt, __VA_ARGS__)
 
 #define LOG_FMT_DEBUG(logger, fmt, ...) SYLAR_LOG_FMT_LEVEL(logger, sylar::LogLevel::DEBUG, fmt, __VA_ARGS__)
 #define LOG_FMT_INFO(logger, fmt, ...) SYLAR_LOG_FMT_LEVEL(logger, sylar::LogLevel::INFO, fmt, __VA_ARGS__)
@@ -66,13 +67,14 @@ class LogEvent {
   typedef std::shared_ptr<LogEvent> Ptr;
 
   LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level, const char *file, int32_t line,
-      uint32_t elapse, uint32_t thread_id, uint32_t fiber_id, uint64_t time);
+      uint32_t elapse, uint32_t thread_id, uint32_t fiber_id, uint64_t time, const std::string& thread_name);
   const char* GetFile() const { return file_; }
   int32_t GetLine() const { return line_; }
   uint32_t GetElapse() const { return elapse_; }
   uint32_t GetThreadId() const { return thread_id_; }
   uint32_t GetFiberId() const { return fiber_id_; }
   uint64_t GetTime() const { return time_; }
+  const std::string& GetThreadName() const { return thread_name_; }
   std::string GetContent() const { return ss_.str(); }
   std::stringstream& GetSS() { return ss_; }
   std::shared_ptr<Logger> GetLogger() const { return logger_; }  // 智能指针不能引用传递
@@ -87,6 +89,7 @@ class LogEvent {
   uint32_t thread_id_ = 0;          // 线程id
   uint32_t fiber_id_ = 0;           // 协程id
   uint64_t time_ = 0;               // 时间戳
+  std::string thread_name_;         // 线程名称
   std::stringstream ss_;            // 日志内容流
   std::shared_ptr<Logger> logger_;  // 为了封装LogEventWrap
   LogLevel::Level level_;           // 级别
@@ -136,12 +139,13 @@ class LogAppender {
   friend class Logger;
  public:
   typedef std::shared_ptr<LogAppender> Ptr;
+  typedef Spinlock MutexType;
 
   virtual ~LogAppender() {}
   virtual void Log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::Ptr event) = 0;
   virtual std::string ToYamlString() = 0;
   void SetFormatter(LogFormatter::Ptr val);
-  LogFormatter::Ptr GetFormatter() const { return formatter_; }
+  LogFormatter::Ptr GetFormatter();
   LogLevel::Level GetLevel() const { return level_; }
   void SetLevel(LogLevel::Level val) { level_ = val; }
 
@@ -149,6 +153,7 @@ class LogAppender {
   LogLevel::Level level_ = LogLevel::Level::DEBUG;
   LogFormatter::Ptr formatter_;
   bool has_formatter_ = false;
+  MutexType mutex_;
 };
 
 // 日志器
@@ -156,6 +161,7 @@ class Logger : public std::enable_shared_from_this<Logger> {
   friend class LoggerManager;
  public:
   typedef std::shared_ptr<Logger> Ptr;
+  typedef Spinlock MutexType;
 
   Logger(std::string name = "root");
   void Log(LogLevel::Level level, LogEvent::Ptr event);
@@ -181,6 +187,7 @@ class Logger : public std::enable_shared_from_this<Logger> {
   std::list<LogAppender::Ptr> appenders_;  // Appender集合
   LogFormatter::Ptr formatter_;            // 日志格式
   Logger::Ptr root_;                       // 主日志器
+  MutexType mutex_;
 };
 
 // 输出到控制台的Appender
@@ -206,10 +213,13 @@ class FileLogAppender : public LogAppender {
  private:
   std::string filename_;
   std::ofstream filestream_;
+  uint64_t lasttime_ = 0;
 };
 
 class LoggerManager {
  public:
+  typedef Spinlock MutexType;
+
   LoggerManager();
   Logger::Ptr GetLogger(const std::string& name);
   void Init();
@@ -219,6 +229,7 @@ class LoggerManager {
  private:
   std::map<std::string, Logger::Ptr> loggers_;
   Logger::Ptr root_;
+  MutexType mutex_;
 };
 
 typedef sylar::Singleton<LoggerManager> LoggerMgr;
