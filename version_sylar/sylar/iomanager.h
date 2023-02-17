@@ -3,17 +3,20 @@
 #pragma once
 
 #include "scheduler.h"
+#include "timer.h"
 
 namespace sylar {
 
-class IOManager : public Scheduler {
+class IOManager : public Scheduler, public TimerManager{
  public:
   typedef std::shared_ptr<IOManager> Ptr;
-  typedef RWMUtex RWMutexType;
+  typedef RWMutex RWMutexType;
 
   enum Event {
     NONE = 0x0,
+    // 读事件(EPOLLIN)
     READ = 0x1,
+    // 写事件(EPOLLOUT)
     WRITE = 0x4,
   };
 
@@ -31,7 +34,7 @@ class IOManager : public Scheduler {
       std::function<void()> cb;
     };
 
-    EventContext& GetContext(Event event) const;
+    EventContext& GetContext(Event event);
     void ResetContext(EventContext& ctx);
     void TriggerEvent(Event event);
 
@@ -60,18 +63,20 @@ class IOManager : public Scheduler {
   void Tickle() override;
   bool Stopping() override;
   void Idle() override;
+  void OnTimerInsertedAtFront() override;
 
   void ContextResize(size_t size);
+  bool Stopping(uint64_t& timeout);
 
  private:
   // epoll 文件句柄
   int epfd_ = 0;
   // pipe 文件句柄
   int tickle_fds_[2];
-  std::atomic<size_t> pending_event_count = {0};
+  std::atomic<size_t> pending_event_count_ = {0};
   RWMutexType mutex_;
   // socket事件上下文的容器
-  std::vector<FdContext> fd_contexts_;
+  std::vector<FdContext*> fd_contexts_;
 };
 
 }  // namespace sylar

@@ -23,7 +23,7 @@ void SchedulerTest() {
 }
 
 int main(int argc, char **argv) {
-  // sylar::Scheduler sc(3, true, "test");
-  SchedulerTest();
+  sylar::Scheduler sc(3, true, "test");
+ // SchedulerTest();
   return 0;
 }

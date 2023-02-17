@@ -62,6 +62,7 @@ class Scheduler {
   virtual void Idle(); // 没有任务的时候，不能让线程停下呀
   void Run();
   void SetThis();
+  bool HasIdleThreads() const { return idle_thread_count_ > 0; }
 
  private:
   template<class FiberOrCb>
@@ -121,7 +122,7 @@ class Scheduler {
   std::vector<int> thread_ids_;
   size_t thread_count_ = 0;
   std::atomic<size_t> active_thread_count_ = {0};
-  std::atomic<size_t> idle_thread_count_ = {0};
+  std::atomic<size_t> idle_thread_count_ = {0};  // 空闲的线程个数
   bool stopping_ = true;
   bool auto_stop_ = false;
   int root_thread_ = 0;
