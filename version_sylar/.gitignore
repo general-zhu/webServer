@@ -9,3 +9,4 @@ system.txt
 Makefile
 lib/
 cmake_install.cmake
+tmp/

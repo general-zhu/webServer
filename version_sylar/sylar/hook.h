@@ -2,9 +2,13 @@
 #define SYLAR_HOOK_H_
 #pragma once
 
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdint.h>
 #include <unistd.h>
 #include <time.h>
-#include <sys/socket.h>
 
 namespace sylar {
 

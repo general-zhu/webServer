@@ -8,10 +8,11 @@
 #include <pthread.h>
 #include <string>
 #include "mutex.h"
+#include "noncopyable.h"
 
 namespace sylar {
 
-class Thread {
+class Thread : private Noncopyable {
  public:
   typedef std::shared_ptr<Thread> Ptr;
 
@@ -27,9 +28,9 @@ class Thread {
   static void SetName(const std::string& name);
  private:
   // 为啥不能拷贝，因为互斥量和互斥信号量是不能拷贝的，拷贝会破坏其作用
-  Thread(const Thread&) = delete;
-  Thread(const Thread&&) = delete;
-  Thread& operator=(const Thread&) = delete;
+  // Thread(const Thread&) = delete;
+  // Thread(const Thread&&) = delete;
+  // Thread& operator=(const Thread&) = delete;
 
   static void* Run(void* arg);
 

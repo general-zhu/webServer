@@ -16,6 +16,9 @@ find_library(YAMLCPP yaml-cpp)
 #message("***", ${YAMLCPP})
 
 set(LIB_SRC
+    sylar/bytearray.cc
+    sylar/socket.cc
+    sylar/address.cc
     sylar/log.cc
     sylar/util.cc
     sylar/config.cc
@@ -81,6 +84,21 @@ add_executable(test_hook tests/test_hook.cc)
 add_dependencies(test_hook sylar)
 force_redefine_file_macro_for_sources(test_hook)
 target_link_libraries(test_hook ${LIBS})
+
+add_executable(test_address tests/test_address.cc)
+add_dependencies(test_address sylar)
+force_redefine_file_macro_for_sources(test_address)
+target_link_libraries(test_address ${LIBS})
+
+add_executable(test_socket tests/test_socket.cc)
+add_dependencies(test_socket sylar)
+force_redefine_file_macro_for_sources(test_socket)
+target_link_libraries(test_socket ${LIBS})
+
+add_executable(test_bytearray tests/test_bytearray.cc)
+add_dependencies(test_bytearray sylar)
+force_redefine_file_macro_for_sources(test_bytearray)
+target_link_libraries(test_bytearray ${LIBS})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

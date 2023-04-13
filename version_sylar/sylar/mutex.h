@@ -9,21 +9,18 @@
 #include <string>
 #include <semaphore.h>
 #include <atomic>
+#include "noncopyable.h"
 
 namespace sylar {
 
 // 信号量
-class Semaphore {
+class Semaphore : private Noncopyable {
  public:
   Semaphore(uint32_t count = 0);
   ~Semaphore();
   void Wait();
   void Notify();
 
- private:
-  Semaphore(const Semaphore&) = delete;
-  Semaphore(const Semaphore&&) = delete;
-  Semaphore& operator=(const Semaphore&) = delete;
  private:
   sem_t semaphore_;
 };
@@ -121,7 +118,7 @@ class WriteScopedLockImpl {
   bool locked_;
 };
 
-class Mutex {
+class Mutex : private Noncopyable {
  public:
   typedef ScopedLockImpl<Mutex> MutexLock;
 
@@ -145,7 +142,7 @@ class Mutex {
   pthread_mutex_t mutex_;
 };
 
-class NullMutex {
+class NullMutex : private Noncopyable {
  public:
   typedef ScopedLockImpl<NullMutex> MutexLock;
 
@@ -155,7 +152,7 @@ class NullMutex {
   void Unlock() {}
 };
 
-class RWMutex {
+class RWMutex : private Noncopyable {
  public:
    typedef ReadScopedLockImpl<RWMutex> ReadLock;
    typedef WriteScopedLockImpl<RWMutex> WriteLock;
@@ -183,7 +180,7 @@ class RWMutex {
   pthread_rwlock_t lock_;
 };
 
-class NullRWMutex {
+class NullRWMutex : private Noncopyable {
  public:
   typedef ReadScopedLockImpl<NullRWMutex> ReadLock;
   typedef WriteScopedLockImpl<NullRWMutex> WriteLock;
@@ -195,7 +192,7 @@ class NullRWMutex {
   void Unlock() {}
 };
 
-class Spinlock {
+class Spinlock : private Noncopyable {
  public:
   typedef ScopedLockImpl<Spinlock> MutexLock;
 
@@ -220,7 +217,7 @@ class Spinlock {
 
 };
 
-class CASLock {
+class CASLock : Noncopyable {
  public:
   typedef ScopedLockImpl<CASLock> MutexLock;
 

@@ -5,7 +5,9 @@
  */
 
 #include <dlfcn.h>
+#include <stdarg.h>
 #include "hook.h"
+#include "config.h"
 #include "fiber.h"
 #include "iomanager.h"
 #include "fd_manager.h"
@@ -204,7 +206,7 @@ int socket(int domain, int type, int protocol) {
   return fd;
 }
 
-int connect_with_timeout(int fd, cost struct sockaddr* addr, socklen_t addrlen, uint64_t timeout_ms) {
+int connect_with_timeout(int fd, const struct sockaddr* addr, socklen_t addrlen, uint64_t timeout_ms) {
   if (!sylar::t_hook_enable) {
     return connect_f(fd, addr, addrlen);
   }
@@ -247,8 +249,8 @@ int connect_with_timeout(int fd, cost struct sockaddr* addr, socklen_t addrlen, 
     if (timer) {
       timer->Cancel();
     }
-    if (tinfo->cacncelled) {
-      errno = tinfo->cacncelled;
+    if (tinfo->cancelled) {
+      errno = tinfo->cancelled;
       return -1;
     }
   } else {
@@ -291,7 +293,7 @@ ssize_t readv(int fd, const struct iovec *iov, int iovcnt) {
 }
 
 ssize_t recv(int sockfd, void *buf, size_t len, int flags) {
-  return do_io(fd, recv_f, "recv", sylar::IOManager::READ, SO_RCVTIMEO, buf, len, flags);
+  return do_io(sockfd, recv_f, "recv", sylar::IOManager::READ, SO_RCVTIMEO, buf, len, flags);
 }
 
 ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags,
@@ -332,7 +334,7 @@ int close(int fd) {
   if (ctx) {
     auto iom = sylar::IOManager::GetThis();
     if (iom) {
-      iom->CanceAll(fd);
+      iom->CancelAll(fd);
     }
     sylar::FdMgr::GetInstance()->Del(fd);
   }
@@ -375,15 +377,15 @@ int fcntl(int fd, int cmd, ... /* arg */ ) {
         }
       }
       break;
-    case F_DUPFD;
-    case F_DUPFD_CLOEXEC;
-    case F_SETFD;
-    case F_SETOWN;
-    case F_SETSIG;
-    case F_SETLEASE;
-    case F_NOTIFY;
+    case F_DUPFD:
+    case F_DUPFD_CLOEXEC:
+    case F_SETFD:
+    case F_SETOWN:
+    case F_SETSIG:
+    case F_SETLEASE:
+    case F_NOTIFY:
 #ifdef F_SETPIPE_SZ
-    case F_SETPIPE_SZ;
+    case F_SETPIPE_SZ:
 #endif
       {
         int arg = va_arg(va, int);
@@ -391,21 +393,21 @@ int fcntl(int fd, int cmd, ... /* arg */ ) {
         return fcntl_f(fd, cmd, arg);
       }
       break;
-    case F_GETFD;
-    case F_GETOWN;
-    case F_GETSIG;
-    case F_GETLEASE;
+    case F_GETFD:
+    case F_GETOWN:
+    case F_GETSIG:
+    case F_GETLEASE:
 #ifdef F_GETPIPE_SZ
-    case F_GETPIPE_SZ;
+    case F_GETPIPE_SZ:
 #endif
       {
         va_end(va);
         return fcntl_f(fd, cmd);
       }
       break;
-    case F_SETLK;
-    case F_SETLKW;
-    case F_GETLK;
+    case F_SETLK:
+    case F_SETLKW:
+    case F_GETLK:
       {
         struct flock* arg = va_arg(va, struct flock*);
         va_end(va);
@@ -415,7 +417,7 @@ int fcntl(int fd, int cmd, ... /* arg */ ) {
     case F_GETOWN_EX:
     case F_SETOWN_EX:
       {
-        struct f_owner_exlock *arg = va_arg(va, struct f_owner_exlock);
+        struct f_owner_exlock *arg = va_arg(va, struct f_owner_exlock*);
         va_end(va);
         return fcntl_f(fd, cmd, arg);
       }
@@ -452,7 +454,7 @@ int setsockopt(int sockfd, int level, int optname,
     return setsockopt_f(sockfd, level, optname, optval, optlen);
   }
   if (level == SOL_SOCKET) {
-    if (optname == SO_RCVTIMO || optname == SO_SNDTIMEO) {
+    if (optname == SO_RCVTIMEO || optname == SO_SNDTIMEO) {
       sylar::FdCtx::Ptr ctx = sylar::FdMgr::GetInstance()->Get(sockfd);
       if (ctx) {
         const timeval *v = (const timeval*) optval;
