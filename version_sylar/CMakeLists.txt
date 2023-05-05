@@ -16,6 +16,17 @@ find_library(YAMLCPP yaml-cpp)
 #message("***", ${YAMLCPP})
 
 set(LIB_SRC
+    sylar/uri.rl.cc
+    sylar/http/servlet.cc
+    sylar/http/http_session.cc
+    sylar/http/http_server.cc
+    sylar/streams/socket_stream.cc
+    sylar/stream.cc
+    sylar/tcp_server.cc
+    sylar/http/http_parser.cc
+    sylar/http/http11_parser.rl.cc
+    sylar/http/httpclient_parser.rl.cc
+    sylar/http/http.cc
     sylar/bytearray.cc
     sylar/socket.cc
     sylar/address.cc
@@ -99,6 +110,36 @@ add_executable(test_bytearray tests/test_bytearray.cc)
 add_dependencies(test_bytearray sylar)
 force_redefine_file_macro_for_sources(test_bytearray)
 target_link_libraries(test_bytearray ${LIBS})
+
+add_executable(test_http tests/test_http.cc)
+add_dependencies(test_http sylar)
+force_redefine_file_macro_for_sources(test_http)
+target_link_libraries(test_http ${LIBS})
+
+add_executable(test_http_parser tests/test_http_parser.cc)
+add_dependencies(test_http_parser sylar)
+force_redefine_file_macro_for_sources(test_http_parser)
+target_link_libraries(test_http_parser ${LIBS})
+
+add_executable(test_tcp_server tests/test_tcp_server.cc)
+add_dependencies(test_tcp_server sylar)
+force_redefine_file_macro_for_sources(test_tcp_server)
+target_link_libraries(test_tcp_server ${LIBS})
+
+add_executable(echo_server examples/echo_server.cc)
+add_dependencies(echo_server sylar)
+force_redefine_file_macro_for_sources(echo_server)
+target_link_libraries(echo_server ${LIBS})
+
+add_executable(test_http_server tests/test_http_server.cc)
+add_dependencies(test_http_server sylar)
+force_redefine_file_macro_for_sources(test_http_server)
+target_link_libraries(test_http_server ${LIBS})
+
+add_executable(test_uri tests/test_uri.cc)
+add_dependencies(test_uri sylar)
+force_redefine_file_macro_for_sources(test_uri)
+target_link_libraries(test_uri ${LIBS})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

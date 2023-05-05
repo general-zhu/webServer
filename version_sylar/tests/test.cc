@@ -4,7 +4,7 @@
 #include "../sylar/util.h"
 
 
-int main() {
+void Log() {
   sylar::Logger::Ptr logger(new sylar::Logger);
   logger->AddAppender(sylar::LogAppender::Ptr(new sylar::StdoutLogAppender));
 
@@ -25,5 +25,14 @@ int main() {
 
   auto l = sylar::LoggerMgr::GetInstance()->GetLogger("xx");
   LOG_INFO(l) << "xxx";
+}
+
+void FormatTest() {
+  std::string str_format = "%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n";
+  sylar::LogFormatter::Ptr fmt(new sylar::LogFormatter(str_format));
+}
+
+int main() {
+  FormatTest();
   return 0;
 }

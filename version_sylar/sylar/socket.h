@@ -53,6 +53,7 @@ class Socket : public std::enable_shared_from_this<Socket>, Noncopyable {
   }
 
   bool SetOption(int level, int option, const void* result, socklen_t len);
+
   template<class T>
   bool SetOption(int level, int option, const T& value) {
     return SetOption(level, option, &value, sizeof(T));
@@ -105,5 +106,17 @@ class Socket : public std::enable_shared_from_this<Socket>, Noncopyable {
   Address::Ptr local_address_;
   Address::Ptr remote_address_;
 };
+
+class SSLSocket : public Socket {
+ public:
+  typedef std::shared_ptr<SSLSocket> Ptr;
+
+  SSLSocket(int family, int type, int protocol = 0);
+  static SSLSocket::Ptr CreateTCP(sylar::Address::Ptr address);
+  bool LoadCertificates(const std::string& cert_file, const std::string& key_file);
+};
+
+std::ostream& operator<<(std::ostream& os, const Socket& sock);
+
 }  // namespace sylar
 #endif  // SYLAR_SOCKET_H_

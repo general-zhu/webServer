@@ -136,6 +136,7 @@ class LogFormatter {
 
 // 日志输出地
 class LogAppender {
+  // 友元可以在logger对象中AddAppender中修改appeder中的formatter_
   friend class Logger;
  public:
   typedef std::shared_ptr<LogAppender> Ptr;

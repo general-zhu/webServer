@@ -435,25 +435,30 @@ std::string LogFormatter::Format(std::shared_ptr<Logger> logger,
 // "%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"
 void LogFormatter::Init() {
   // str, format, type
-  // %d{%Y-%m-%d} -> (d, %Y-%m-%d, 1)
+  // %d{%Y-%m-%d} -> (d, %Y-%m-%d, 1) d表示时间(自己定义),
+  // 1表示没有问题，0表示错误或者要输出字符串
   std::vector<std::tuple<std::string, std::string, int>> vec;
+  // nstr: 要输出的字符串
   std::string nstr;
   for (size_t i = 0; i < pattern_.size(); ++i) {
     if (pattern_[i] != '%') {
       nstr.append(1, pattern_[i]);
       continue;
     }
-    if ((i + 1) < pattern_.size()) { // %%(我猜是这种情况), %%d, %%Y
+    // 我们就是要有一个%号的时候，%%->%
+    if ((i + 1) < pattern_.size()) { //  %%d, %%Y
       if (pattern_[i + 1] == '%') {
         nstr.append(1, '%');
         continue;
       }
     }
     size_t n = i + 1;
-    int fmt_status = 0;
+    int fmt_status = 0; // 0为初始状态，1是子格式状态
     size_t fmt_begin = 0;
-    std::string str, fmt;
+    std::string str, fmt; // str为要map中的key
     while (n < pattern_.size()) {
+      // isalpha 判断是否是字母
+      // 上一个str已经结束，不是字母(%nbnhhf )
       if (!fmt_status && (!isalpha(pattern_[n]) && pattern_[n] != '{' && pattern_[n] != '}')) {
         str = pattern_.substr(i + 1, n - i - 1);
         break;

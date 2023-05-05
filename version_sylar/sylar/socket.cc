@@ -17,12 +17,12 @@ namespace sylar {
 static sylar::Logger::Ptr g_logger = LOG_NAME("system");
 
 Socket::Ptr Socket::CreateTCP(sylar::Address::Ptr address) {
-  Socket::Ptr sock(new Socket(address->GetFamily(), TCP,0));
+  Socket::Ptr sock(new Socket(address->GetFamily(), TCP, 0));
   return sock;
 }
 
 Socket::Ptr Socket::CreateUDP(sylar::Address::Ptr address) {
-  Socket::Ptr sock(new Socket(address->GetFamily(), UDP,0));
+  Socket::Ptr sock(new Socket(address->GetFamily(), UDP, 0));
   sock->NewSock();
   sock->is_connected_ = true;
   return sock;
@@ -439,4 +439,20 @@ bool Socket::Init(int sock) {
   return false;
 }
 
+SSLSocket::SSLSocket(int family, int type, int protocol) : Socket(family, type, protocol) {
+}
+
+SSLSocket::Ptr SSLSocket::CreateTCP(sylar::Address::Ptr address) {
+  SSLSocket::Ptr sock(new SSLSocket(address->GetFamily(), TCP, 0));
+  return sock;
+}
+
+bool SSLSocket::LoadCertificates(const std::string& cert_file, const std::string& key_file) {
+  // TODO
+  return true;
+}
+
+std::ostream& operator<<(std::ostream& os, const Socket& sock) {
+  return sock.Dump(os);
+}
 }  // namespace syalr

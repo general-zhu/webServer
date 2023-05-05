@@ -3,6 +3,7 @@
 #pragma once
 
 #include <map>
+#include <string>
 // #include "thirdparty/base/Types.h"
 
 namespace muduo {
