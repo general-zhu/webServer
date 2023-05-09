@@ -67,7 +67,8 @@ class LogEvent {
   typedef std::shared_ptr<LogEvent> Ptr;
 
   LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level, const char *file, int32_t line,
-      uint32_t elapse, uint32_t thread_id, uint32_t fiber_id, uint64_t time, const std::string& thread_name);
+           uint32_t elapse, uint32_t thread_id, uint32_t fiber_id,
+           uint64_t time, const std::string& thread_name);
   const char* GetFile() const { return file_; }
   int32_t GetLine() const { return line_; }
   uint32_t GetElapse() const { return elapse_; }
@@ -77,7 +78,8 @@ class LogEvent {
   const std::string& GetThreadName() const { return thread_name_; }
   std::string GetContent() const { return ss_.str(); }
   std::stringstream& GetSS() { return ss_; }
-  std::shared_ptr<Logger> GetLogger() const { return logger_; }  // 智能指针不能引用传递
+  // 智能指针不能引用传递(特殊情况才使用，这会导致异常释放内存core dump)
+  std::shared_ptr<Logger> GetLogger() const { return logger_; }
   LogLevel::Level GetLevel() const { return level_; }
   void Format(const char *fmt, ...);  // 格式化写入日志内容
   void Format(const char *fmt, va_list al);

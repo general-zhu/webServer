@@ -10,11 +10,11 @@
 #include <yaml-cpp/yaml.h>
 #include <iostream>
 
-#if 0
+//#if 0
 sylar::ConfigVar<int>::Ptr g_int_value_config = sylar::Config::Lookup("system.port", (int)8080,
     "system port");
-sylar::ConfigVar<float>::Ptr g_int_valuex_config = sylar::Config::Lookup("system.port", (float)8080,
-    "system port");
+//sylar::ConfigVar<float>::Ptr g_int_valuex_config = sylar::Config::Lookup("system.port", (float)8080,
+//    "system port");
 sylar::ConfigVar<float>::Ptr g_float_value_config = sylar::Config::Lookup("system.value",
     (float)10.2f, "system value");
 sylar::ConfigVar<std::vector<int>>::Ptr g_int_vec_value_config =
@@ -30,6 +30,7 @@ sylar::ConfigVar<std::map<std::string, int>>::Ptr g_str_int_map_value_config =
 sylar::ConfigVar<std::unordered_map<std::string, int>>::Ptr g_str_int_umap_value_config =
     sylar::Config::Lookup("system.str_int_umap", std::unordered_map<std::string, int>{{"k", 2}}, "system str int umap");
 
+// level表示第几层，用4个空格区分
 void PrintYaml(const YAML::Node& node, int level) {
   if (node.IsScalar()) {
     LOG_INFO(LOG_ROOT()) << std::string(level * 4, ' ')
@@ -40,7 +41,8 @@ void PrintYaml(const YAML::Node& node, int level) {
   } else if (node.IsMap()) {
     for (auto it = node.begin(); it != node.end(); ++it) {
       LOG_INFO(LOG_ROOT()) << std::string(level * 4, ' ')
-          << it->first << " - " << it->second.Type() << " - " << level;
+        // 下面是it->second.Type而不是node.Type()
+          << it->first << " - " << node.Type() << " - " << it->second.Type() << " - " << level;
       PrintYaml(it->second, level + 1);
     }
   } else if (node.IsSequence()) {
@@ -102,7 +104,7 @@ void TestConfig() {
   XX_M(g_str_int_umap_value_config, str_int_umap, after);
 }
 
-#endif
+//#endif
 
 class Person {
  public:
@@ -187,15 +189,15 @@ void test_log() {
 }
 
 int main() {
-  // TestYaml();
+  TestYaml();
   // TestConfig();
   // test_class();
-  test_log();
-  sylar::Config::Visit([](sylar::ConfigVarBase::Ptr var) {
-    LOG_INFO(LOG_ROOT()) << "name=" << var->GetName()
-        << " description=" << var->GetDescription()
-        << " typename=" << var->GetTypeName()
-        << " value=" << var->ToString();
-  });
+  //test_log();
+  //sylar::Config::Visit([](sylar::ConfigVarBase::Ptr var) {
+  //  LOG_INFO(LOG_ROOT()) << "name=" << var->GetName()
+  //      << " description=" << var->GetDescription()
+  //      << " typename=" << var->GetTypeName()
+  //      << " value=" << var->ToString();
+  //});
   return 0;
 }

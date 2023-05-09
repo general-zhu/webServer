@@ -46,6 +46,8 @@ class ConfigVarBase {
 };
 
 // 类型转换模板类(F yuan类型， T 目标类型)
+// 使用：
+// std::string dem0 = LexicalCast<int, string>(5);
 template<class F, class T>
 class LexicalCast {
  public:
@@ -65,7 +67,8 @@ class LexicalCast<std::string, std::vector<T>> {
     for (size_t i = 0; i < node.size(); ++i) {
       ss.str("");
       ss << node[i];
-      vec.push_back(LexicalCast<std::string, T>()(ss.str()));
+      //vec.push_back(LexicalCast<std::string, T>(ss.str())); // 错误的使用，你没有生成对象
+      vec.push_back(LexicalCast<std::string, T>()(ss.str())); // 先生成对象在调用()操作符
     }
     return vec;
   }
@@ -343,7 +346,7 @@ class Config {
         return tmp;
       } else {
         LOG_ERROR(LOG_ROOT()) << "Lookup name=" << name << " exists but type not "
-            << typeid(T).name() << "real_type=" << it->second->GetTypeName()
+            << typeid(T).name() << " real_type=" << it->second->GetTypeName()
             <<  " " << it->second->ToString();
         return nullptr;
       }
